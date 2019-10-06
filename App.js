@@ -17,9 +17,7 @@ export default class App extends Component {
           selectedValue={greeting}
           style={styles.picker}
           onValueChange={(itemValue, itemIndex) => this.setState({ greeting: itemValue })}>
-          {GREETINGS.map(g => {
-            return <Picker.Item key={g} label={g} value={g} />
-          })}
+          {GREETINGS.map(g => <Picker.Item key={g} label={g} value={g} />)}
         </Picker>
       </View>
     );
@@ -36,9 +34,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 36,
     fontWeight: '600',
-  },
-  buttonText: {
-    fontSize: 24,
   },
   picker: {
     margin: 45,
