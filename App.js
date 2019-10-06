@@ -25,6 +25,7 @@ export default class App extends Component {
       onValueChange={(itemValue, itemIndex) => this.setState({ greeting: itemValue })}>
       {GREETINGS.map(g =>
         <Picker.Item
+          key={g}
           label={g}
           value={g}
         />
