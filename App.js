@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   title: {
-    fontSize: 24,
-    fontWeight: '600',
+    fontSize: 36,
   },
 });
