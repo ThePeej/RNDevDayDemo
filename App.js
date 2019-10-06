@@ -3,16 +3,14 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 const GREETINGS = ['Hello', 'Hi', 'Howdy', 'Salutations', 'Sup'];
 
-const Button = (props) => {
-  return <TouchableOpacity
-    key={props.value}
-    style={styles.button}
-    onPress={() => props.onPress(props.value)}>
-    <Text style={styles.buttonText}>
-      {props.value}
-    </Text>
-  </TouchableOpacity>
-}
+const Button = (props) => <TouchableOpacity
+  key={props.value}
+  style={styles.button}
+  onPress={() => props.onPress(props.value)}>
+  <Text style={styles.buttonText}>
+    {props.value}
+  </Text>
+</TouchableOpacity>
 
 export default class App extends Component {
   state = {
@@ -28,15 +26,11 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{greeting}, world!</Text>
-        {GREETINGS.map(g => {
-          return (
-            <Button
-              key={g}
-              value={g}
-              onPress={this.handleButtonPress}
-            />
-          )
-        })}
+        {GREETINGS.map(g => <Button
+          key={g}
+          value={g}
+          onPress={this.handleButtonPress} />
+        )}
       </View>
     );
   }
