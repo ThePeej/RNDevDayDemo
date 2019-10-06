@@ -8,15 +8,6 @@ export default class App extends Component {
     greeting: GREETINGS[0]
   };
 
-  handleButtonPress = () => {
-    const index = GREETINGS.indexOf(this.state.greeting);
-    if (index < GREETINGS.length - 1) {
-      this.setState({ greeting: GREETINGS[index + 1] });
-    } else {
-      this.setState({ greeting: GREETINGS[0] });
-    }
-  };
-
   render() {
     const { greeting } = this.state;
     return (
