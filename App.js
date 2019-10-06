@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Picker } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 const GREETINGS = ['Hello', 'Hi', 'Howdy', 'Salutations', 'Sup'];
+
+const Button = (props) => {
+  return <TouchableOpacity
+    key={props.value}
+    style={styles.button}
+    onPress={() => props.onPress(props.value)}>
+    <Text style={styles.buttonText}>
+      {props.value}
+    </Text>
+  </TouchableOpacity>
+}
 
 export default class App extends Component {
   state = {
     greeting: GREETINGS[0]
   };
 
-  handleButtonPress = () => {
-    const index = GREETINGS.indexOf(this.state.greeting);
-    if (index < GREETINGS.length - 1) {
-      this.setState({ greeting: GREETINGS[index + 1] });
-    } else {
-      this.setState({ greeting: GREETINGS[0] });
-    }
+  handleButtonPress = (value) => {
+    this.setState({ greeting: value });
   };
 
   render() {
@@ -22,14 +28,15 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{greeting}, world!</Text>
-        <Picker
-          selectedValue={greeting}
-          style={styles.picker}
-          onValueChange={(itemValue, itemIndex) => this.setState({ greeting: itemValue })}>
-          {GREETINGS.map(g => {
-            return <Picker.Item key={g} label={g} value={g} />
-          })}
-        </Picker>
+        {GREETINGS.map(g => {
+          return (
+            <Button
+              key={g}
+              value={g}
+              onPress={this.handleButtonPress}
+            />
+          )
+        })}
       </View>
     );
   }
@@ -47,10 +54,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   buttonText: {
-    fontSize: 24,
+    fontSize: 16,
   },
-  picker: {
-    margin: 45,
+  button: {
+    borderRadius: 5,
+    borderColor: 'gray',
+    borderWidth: 1,
+    margin: 5,
     padding: 15,
     width: 200,
   }
